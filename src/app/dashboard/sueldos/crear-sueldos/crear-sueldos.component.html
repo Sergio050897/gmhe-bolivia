@@ -1,0 +1,94 @@
+<div class="modal-content">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{ titulo }}</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+      ></button>
+    </div>
+
+    <form
+      class="row g-3 needs-validation"
+      [formGroup]="form"
+      (ngSubmit)="registrarSueldo(form.value)"
+      id="userform"
+      novalidate
+    >
+      <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-12 form-group is-invalid">
+            <label for="concepto" class="form-label">Concepto</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="concepto"
+              formControlName="concepto"
+              placeholder="Concepto"
+              [ngClass]="{ 'is-invalid': (form.controls.concepto.touched || form.controls.concepto.dirty) && form.controls.concepto.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.concepto" [controlName]="'Concepto'"></app-input-validator-error>
+          </div>
+          <div class="col-md-6 form-group is-invalid">
+            <label for="concepto" class="form-label">Mes</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="mes"
+              formControlName="mes"
+              placeholder="Mes"
+              [ngClass]="{ 'is-invalid': (form.controls.mes.touched || form.controls.mes.dirty) && form.controls.mes.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.mes" [controlName]="'Mes'"></app-input-validator-error>
+          </div>
+          <div class="col-md-6 form-group is-invalid">
+            <label for="concepto" class="form-label">Fecha de Registro</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="fecha_registro"
+              formControlName="fecha_registro"
+              placeholder="Fecha de Registro"
+              [ngClass]="{ 'is-invalid': (form.controls.fecha_registro.touched || form.controls.fecha_registro.dirty) && form.controls.fecha_registro.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.fecha_registro" [controlName]="'Fecha de Registro'"></app-input-validator-error>
+          </div>
+          <div class="col-md-12 form-group is-invalid"><br>
+            <label for="valor" class="form-label">Valor</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              id="valor"
+              formControlName="valor"
+              placeholder="Valor"
+              [ngClass]="{ 'is-invalid': (form.controls.valor.touched || form.controls.valor.dirty) && form.controls.valor.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.valor" [controlName]="'Valor'"></app-input-validator-error>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="activeModal.dismiss('Cross click')"
+        >Cancelar</button>
+        
+        <button
+          type="submit"
+          class="btn bg-color-blue"
+          [disabled]="form.invalid || isLoading"
+        >
+          <i class="lni lni-save" *ngIf="!isLoading"></i>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+          Guardar
+        </button>
+      </div>
+    </form>
+</div>

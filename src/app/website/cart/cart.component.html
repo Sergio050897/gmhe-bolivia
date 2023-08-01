@@ -1,0 +1,119 @@
+ <!--breadcrumbs area start-->
+ <div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li>Carrito</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!--shopping cart area start -->
+<div class="shopping_cart_area mt-60">
+    <div class="container">
+        <form
+        [formGroup]="form"
+        (ngSubmit)="register(form.value)"
+        >
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+                        <div class="cart_page table-responsive">
+                        <table>
+                        <thead>
+                            <tr>
+                                <th class="product_remove">Eliminar</th>
+                                <th class="product_name">Imagen</th>
+                                <th class="product_name">Producto</th>
+                                <th class="product_quantity">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let basic of detalle.controls; let i = index">
+                               <td class="product_remove"><a (click)="removeCartProduct()"><i class="fa fa-trash-o"></i></a></td>
+                                <td class="product_thumb"><a><img class="mx-auto d-block" src="{{url}}/{{basic.get('img_url').value}}" width="80px" height="80px"></a></td>
+                                <td class="product_name"><a>{{basic.get('nombre').value}}</a></td>
+                                <td class="product_quantity"><label>Cantidad</label> <input   min="1" value="1" type="number"  [formControl]="basic.get('cantidad')"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                        </div>
+
+                        <div class="register" *ngIf="tokenStorage.getUser()==false">
+                            <a class="text-white" (click)="registerModal()">Iniciar Sesion / Registrarse</a>
+                        </div>
+                        <div class="register"*ngIf="tokenStorage.getUser()!=false">
+                            <!-- <a class="text-white">Realizar Pedido</a> -->
+                        </div>
+                    </div>
+                 </div>
+             </div>
+             <!--coupon code area start-->
+            <div class="coupon_area" *ngIf="tokenStorage.getUser()!=false">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="coupon_code left">
+                            <h3>Datos</h3>
+                            <div class="coupon_inner">
+                                <div class="row">
+                                    <div class="col-md-10 form-group is-invalid">
+                                        <label for="nombre" class="form-label">Razon Social</label>
+                                        <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        id="razon_social"
+                                        formControlName="razon_social"
+                                        placeholder="Razon Social"
+                                        >
+                                    </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-5 form-group is-invalid">
+                                        <label for="nombre" class="form-label">Nit</label>
+                                        <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        id="nit"
+                                        formControlName="nit"
+                                        placeholder="Nit"
+                                        >
+                                    </div>
+                                    <div class="col-md-5 form-group is-invalid">
+                                      <label for="nombre" class="form-label">Telefono</label>
+                                      <input
+                                      type="text"
+                                      class="form-control form-control-sm"
+                                      id="nit"
+                                      formControlName="telefono"
+                                      placeholder="Telefono"
+                                      >
+                                  </div>
+                                  <div class="col-md-10 mt-2 form-group is-invalid">
+                                    <label for="nombre" class="form-label">Direccion</label>
+                                    <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    id="nit"
+                                    formControlName="direccion"
+                                    placeholder="Direccion"
+                                    >
+                                </div>
+                                </div>
+                                <button type="submit">Realizar Pedido</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

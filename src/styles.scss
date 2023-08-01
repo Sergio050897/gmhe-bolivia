@@ -1,0 +1,27 @@
+// @import "~@ng-select/ng-select/themes/material.theme.css";
+.ng-select .ng-clear-wrapper {
+  display: none !important;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+.td-switch{
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+}
+
+.form-group{
+  padding-bottom: 12px !important;
+}
+
+.form-label{
+  margin-bottom: 0.2rem !important;
+}
+
+.vertical-center{
+  vertical-align: middle !important;
+}
+
+.ng-dropdown-panel .scroll-host {
+  text-align: left;
+}

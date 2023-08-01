@@ -1,0 +1,4 @@
+<div *ngIf="(control.dirty || control.touched) && control.invalid" class="invalid-input">
+  <div *ngIf="control.errors?.required">{{ controlName }} es requerido</div>
+  <div *ngIf="control.errors?.email">{{ controlName }} invalido</div>
+</div>

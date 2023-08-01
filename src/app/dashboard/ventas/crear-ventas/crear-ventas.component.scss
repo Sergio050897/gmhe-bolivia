@@ -1,0 +1,75 @@
+.ng-select.custom-ng-select ::ng-deep {
+    //this section works//
+           &.ng-select-container {
+                  border: 1px solid #1CBC88;
+                  color: #1CBC88 !important;
+                  box-shadow: none;
+                  font-size: 13px !important;
+                  font-weight: bold;   }
+           }
+           
+.icon{
+    content: url('https://api.iconify.design/bx/error.svg?color=%23ffc433&width=30&height=30&flip=horizontal');
+}
+.icon-success{
+    content: url('https://api.iconify.design/bx/check-circle.svg?color=%2335bd77&width=30&height=30');
+}
+
+.bg-color-blue{
+    background-color:rgb( 66 133 244) ;
+    color: white;
+  }
+  .bg-color-red{
+    background-color:rgb( 219 68 55) ;
+    color: white;
+  }
+  .bg-color-yellow{
+    background-color:rgb( 244 180 0) ;
+    color: white;
+  }
+  .bg-color-green{
+    background-color:rgb( 15 157 88) ;
+    color: white;
+  }
+  .color-blue{
+    color:rgb( 66 133 244) ;    
+  }
+  .color-red{
+    color:rgb( 219 68 55) ;
+    
+  }
+  .color-yellow{
+    color:rgb( 244 180 0) ;
+    
+  }
+  .color-green{
+    color:rgb( 15 157 88) ;
+    
+  }
+
+  #global {
+    height: 250px;
+      width: 250px;
+    background: white;
+    overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  #global::-webkit-scrollbar {
+      display: none;
+    }
+
+    #modelo{
+      width: 550px;
+    }
+
+    .table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th,
+    .table-borderless > tfoot > tr > td,
+    .table-borderless > tfoot > tr > th,
+    .table-borderless > thead > tr > td,
+    .table-borderless > thead > tr > th {
+        border: none;
+    }

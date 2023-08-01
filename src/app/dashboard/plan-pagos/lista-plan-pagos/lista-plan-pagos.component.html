@@ -1,0 +1,114 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Ventas</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Crear Ventas</li>
+        </ol>
+      </nav>
+    </div>
+</div>
+
+<form
+ class="row g-3 needs-validation"
+ [formGroup]="form"       
+ (ngSubmit)="register(form.value)"
+ id="proforma"
+ novalidate      
+>
+    <div class="row mt-4 flex justify-content-center">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body" >
+            <div class="mt-4 mb-5">
+              <div>
+              <h5>PLAN DE PAGOS</h5>
+              <hr>
+              </div>
+              <div class="container">
+                  <div class="table-responsive">
+                  <table class="table mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Cancelar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let basic of pagos.controls; let i = index">
+                          <th scope="row">{{i+1}}</th>
+                          <td>{{basic.get('fecha').value}}</td>
+                          <td>{{basic.get('valor').value.toFixed(2)}}</td>
+                          <td>
+                            <div *ngIf="basic.get('cancelado').value==true">
+                                <input
+                                    type="checkbox"
+                                    class="form-control form-control-sm form-check-input"
+                                    [formControl]="basic.get('cancelado')"
+                                    disabled
+                                >
+                            </div>
+                            <div *ngIf="basic.get('cancelado').value==false">
+                                <input
+                                    type="checkbox"
+                                    class="form-control form-control-sm form-check-input"
+                                    [formControl]="basic.get('cancelado')"
+                                >
+                            </div>
+                          </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="2">TOTAL Bs.</td>
+                        <td>
+                          <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          id="totalPagos"
+                          disabled="true"
+                          formControlName="totalPagos"
+                          [ngClass]="{ 'is-invalid': 
+                          (form.controls.totalPagos.touched || 
+                          form.controls.totalPagos.dirty) 
+                          && form.controls.totalPagos.invalid }"
+                          >
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  </div>
+                  <!-- <div>{{form.value | json}}</div> -->
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-4">
+          <button 
+            type="button"
+            class="btn btn-danger btn-lg"
+            routerLink="/dashboard/ventas/ventas"
+          >Cancelar</button>
+            &nbsp;
+      </div>
+      <div class="col-md-5">
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg"
+            [disabled]="form.invalid || isLoading"
+          >
+            <i class="lni lni-save" *ngIf="!isLoading"></i>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+            Guardar
+          </button>
+      </div>
+    </div>
+</form>

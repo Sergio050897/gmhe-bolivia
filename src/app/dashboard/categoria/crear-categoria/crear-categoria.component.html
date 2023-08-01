@@ -1,0 +1,79 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ titulo }}</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <form
+      class="row g-3 needs-validation"
+      [formGroup]="form"
+      (ngSubmit)="registerCategoria(form.value)"
+      id="userform"
+      novalidate
+    >
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 form-group is-invalid">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="nombre"
+                  formControlName="nombre"
+                  placeholder="nombre"
+                  [ngClass]="{ 'is-invalid': (form.controls.nombre.touched || form.controls.nombre.dirty) && form.controls.nombre.invalid }"
+                >
+                <app-input-validator-error [control]="form.controls.nombre" [controlName]="'Nombre de categoria'"></app-input-validator-error>
+            </div>
+            <div class="col-md-12 form-group is-invalid">
+                <label for="nombre" class="form-label">Descripción</label>
+                <textarea
+                  cols="30" rows="10"
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="descripcion"
+                  formControlName="descripcion"
+                  placeholder="decripcion"
+                  [ngClass]="{ 'is-invalid': (form.controls.descripcion.touched || form.controls.descripcion.dirty) && form.controls.descripcion.invalid }"
+                ></textarea>
+                <app-input-validator-error [control]="form.controls.descripcion" [controlName]="'Descripcion'"></app-input-validator-error>
+            </div>
+            <div class="col-md-12 form-group is-invalid">
+                <label for="img_url"class="form-label">Imagen</label>
+                
+                <input
+                  type="file"
+                  class="form-control form-control-sm"
+                  id="img_url"
+                  accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                  formControlName="img_url"
+                  (change)="onSelectFile($event)"
+                >
+            </div>
+            <!-- <img [src]="url" width="200" height="150"> <br/> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="activeModal.dismiss('Cross click')"
+        >Cancelar</button>
+        <button
+          type="submit"
+          class="btn bg-color-blue"
+          [disabled]="form.invalid || isLoading"
+        >
+          <i class="lni lni-save" *ngIf="!isLoading"></i>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>

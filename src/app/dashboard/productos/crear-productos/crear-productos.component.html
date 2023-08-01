@@ -1,0 +1,164 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+  <div class="breadcrumb-title pe-3">Medicamentos</div>
+  <div class="ps-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 p-0">
+        <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Registrar Medicamento</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <form
+      class="row g-3 needs-validation"
+      [formGroup]="form"
+      (ngSubmit)="registerProducto(form.value)"
+      id="userform"
+      novalidate
+    >
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-md-5 mb-3 ">
+               <label for="categoria_id" class="form-label">Categoria</label>
+                <div class="input-group">
+                  <select
+                    class="single-select form-select form-select"
+                    formControlName="categoria_id"
+                    [ngClass]="{ 'is-invalid':
+                    (form.controls.categoria_id.touched
+                    || form.controls.categoria_id.dirty)
+                    && form.controls.categoria_id.invalid }"
+                    >
+                    <option *ngFor="let categoria of categorias"
+                    [value]="categoria.categoria_id">{{categoria.nombre}}</option>
+                  </select>
+                </div>
+          </div>
+          <div class="col-md-5 mb-3 ">
+                <label for="nombre" class="form-label">Código de producto</label>
+              <input
+                type="number"
+                class="form-control form-control"
+                id="codigo_nro"
+                formControlName="codigo_nro"
+                placeholder="código"
+                [ngClass]="{ 'is-invalid': (form.controls.codigo_nro.touched || form.controls.codigo_nro.dirty) && form.controls.codigo_nro.invalid }"
+              >
+          </div>
+          <div class="col-md-5 mb-3 ">
+             <label for="nombre" class="form-label">Stock mínimo</label>
+              <input
+                type="number"
+                class="form-control form-control"
+                id="stock_minimo"
+                formControlName="stock_minimo"
+                placeholder="Stock"
+                [ngClass]="{ 'is-invalid': (form.controls.stock_minimo.touched || form.controls.stock_minimo.dirty) && form.controls.stock_minimo.invalid }"
+              >
+          </div>
+          <div class="col-md-5 mb-3 ">
+              <label for="proveedor_id" class="form-label">Proveedor</label>
+              <div class="input-group">
+                <ng-select
+                [items]="proveedores"
+                bindLabel="texto"
+                bindValue="proveedor_id"
+                formControlName="proveedor_id"
+                style="width: 100% ;"
+                (change)="onProveedor($event)"
+                disabled
+              >
+              </ng-select>
+              </div>
+          </div>
+          <div class="col-md-5 mb-3 ">
+              <label for="marca_id" class="form-label">Marca</label>
+                <div class="input-group">
+                  <ng-select
+                    formControlName="marca_id"
+                    [items]="marcas"
+                    bindLabel="nombre"
+                    bindValue="marca_id"
+                    style="width: 100% ;"
+                  >
+                  </ng-select>
+                </div>
+          </div>
+          <div class="col-md-5 mb-3 ">
+             <label for="nombre" class="form-label">Nombre del Medicamento </label>
+                <input
+                  type="text"
+                  class="form-control form-control"
+                  id="nombre"
+                  formControlName="nombre"
+                  placeholder="nombre"
+                  [ngClass]="{ 'is-invalid': (form.controls.nombre.touched || form.controls.nombre.dirty) && form.controls.nombre.invalid }"
+                >
+          </div>
+          <div class="col-md-5 mb-3 ">
+            <label for="nombre" class="form-label">Concentracion</label>
+               <input
+                 type="text"
+                 class="form-control form-control"
+                 id="nombre"
+                 formControlName="concentracion"
+                 placeholder="concentracion"
+                 [ngClass]="{ 'is-invalid': (form.controls.concentracion.touched || form.controls.concentracion.dirty) && form.controls.concentracion.invalid }"
+               >
+         </div>
+          <div class="col-md-5 mb-3 ">
+             <label for="nombre" class="form-label">Precio de Venta</label>
+                <input
+                  type="number"
+                  class="form-control form-control"
+                  id="p_menor"
+                  formControlName="p_menor"
+                  placeholder="Precio x menor Bs"
+                  [ngClass]="{ 'is-invalid': (form.controls.p_menor.touched || form.controls.p_menor.dirty) && form.controls.p_menor.invalid }"
+                >
+          </div>
+          <div class="col-md-10 mb-3">
+              <label for="img_url"class="form-label mb-4">Imagen</label>
+
+              <input
+                type="file"
+                class="form-control form-control"
+                id="img_url"
+                accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                formControlName="img_url"
+                (change)="onSelectFile($event)"
+              >
+          </div>
+          <div class="col-md-10">
+            <label for="cuerpo" class="form-label">Descripción</label>
+            <ckeditor
+            (ready)="onReady($event)"
+            [editor]="editor"
+            data="<p>Hello, world!</p>"
+            [config]="ckconfig"
+            formControlName="descripcion"
+          ></ckeditor>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          routerLink="/dashboard/productos/lista-productos"
+        >Cancelar</button>
+        <button
+          type="submit"
+          class="btn bg-color-blue"
+          [disabled]="form.invalid || isLoading"
+        >
+          <i class="lni lni-save" *ngIf="!isLoading"></i>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>

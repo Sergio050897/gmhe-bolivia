@@ -1,0 +1,44 @@
+footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #262626;
+    height: auto;
+    width: 100vw;
+    padding-top: 20px;
+    color: #fff;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.redes{
+    margin-left: 123px;;
+}
+.text{
+    margin-left: 150px;
+}
+.font>i{
+    margin-right: 13px;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+a{
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+h1{
+  color: aliceblue;
+  margin-left: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+a img{
+  border-radius: 50%;
+}

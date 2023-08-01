@@ -1,0 +1,136 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ title }}</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <form
+      class="row g-3 needs-validation"
+      [formGroup]="form"
+      (ngSubmit)="registrar(form.value)"
+      id="userform"
+      novalidate
+      autocomplete="off"
+    >
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+                <h6>Proveedor:</h6>
+            </div>
+            <div class="col-md-3 mt-1">
+                <h6>{{detalle?.proveedor.razon_social}}</h6>
+            </div>
+            <div class="col-md-3">
+              <h6>Telefono:</h6>
+          </div>
+          <div class="col-md-3 mt-1">
+              <h6>{{detalle?.proveedor.telefono}}</h6>
+          </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <h6>Nombre de Contacto:</h6>
+          </div>
+          <div class="col-md-3 mt-1">
+              <h6>{{detalle?.proveedor.contacto}}</h6>
+          </div>
+            <div class="col-md-3">
+              <h6>Celular:</h6>
+          </div>
+          <div class="col-md-3 mt-1">
+              <h6>{{detalle?.proveedor.celular}}</h6>
+          </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="container">
+            <div class="table-responsive">
+            <table class="table mb-2">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio Compra</th>
+                  <th scope="col">Sub Total</th>
+                  <th scope="col">Ubicacion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let basic of productos.controls; let i = index ">
+                    <th scope="row">{{i+1}}</th>
+                    <td>
+                       {{basic.get('producto_nombre').value}}
+                    </td>
+                    <td>
+                      {{basic.get('cantidad').value}}
+                    </td>
+                    <td>
+                       {{basic.get('precio_compra').value}}
+                    </td>
+                    <td *ngIf="detalle.dolar == 0">
+                      {{basic.get('precio_compra').value*basic.get('cantidad').value | number:'3.2'}}
+                    </td>
+                    <td *ngIf="detalle.dolar == 1">
+                      {{basic.get('precio_compra').value*basic.get('cantidad').value/detalle.cambio | number:'3.2'}}
+                    </td>
+                    <td>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          id="ubicacion"
+                          [formControl]="basic.get('ubicacion')"
+                          placeholder="Ubicacion"
+                        >
+                    </td>
+                </tr>
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td  colspan="4">TOTAL BOB</td>
+                  <td class="text-center">
+                    {{detalle.total | number: '3.2'}}
+                  </td>
+                </tr>
+               <tr>
+                 <td  colspan="4">TOTAL $US.</td>
+                 <td class="text-center">
+                    {{detalle.total/detalle.cambio| number: '3.2'}}
+                 </td>
+               </tr>
+             </tfoot>
+            </table>
+            </div>
+        </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="activeModal.dismiss('Cross click')"
+        >Cancelar</button>
+        <button
+        type="submit"
+        class="btn bg-color-blue"
+        [disabled]="form.invalid || isLoading"
+      >
+        <i class="lni lni-save" *ngIf="!isLoading"></i>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+        Guardar
+      </button>
+      </div>
+    </form>
+  </div>

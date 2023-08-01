@@ -1,0 +1,117 @@
+/*  04. banner section css here  */
+.sidebar_banner_six{
+    @media #{$tablet-device}{
+        display: flex;
+        margin-top: 30px;
+    }
+    @media #{$large-mobile}{
+        margin-top: 30px;
+    }
+    & .single_banner{
+        @media #{$tablet-device}{
+            margin-bottom: 0;
+            margin-right: 30px;
+            width: 50%;
+            &:last-child{
+                margin-right: 0;
+            }
+            
+        }
+        & a{
+            @media #{$tablet-device}{
+                width: 100%;
+            }
+            & img{
+                @media #{$tablet-device}{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+.sidebar_banner_thumb{
+    overflow: hidden;
+    @media #{$tablet-device}{
+        text-align: center;
+    }
+    @media #{$large-mobile}{
+        text-align: center;
+    }
+    & a{
+        &:hover{
+            & img{
+                -moz-transform: scale(1.1);
+                -webkit-transform: scale(1.1);
+                -o-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+        }
+        @media #{$large-mobile}{
+            width: 100%;
+        }
+        & img{
+            @include transition(.3s);
+            @media #{$large-mobile}{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.banner_thumb{
+     overflow: hidden;
+     @media #{$tablet-device}{
+        text-align: center;
+    }
+    @media #{$large-mobile}{
+        text-align: center;
+    }
+    & a{
+        &:hover{
+            & img{
+                -moz-transform: scale(1.1);
+                -webkit-transform: scale(1.1);
+                -o-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+        }
+        @media #{$large-mobile}{
+            width: 100%;
+        }
+        & img{
+            @include transition(.5s);
+            @media #{$large-mobile}{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.banner_column2{
+    @media #{$large-mobile}{
+        margin-bottom: 20px;
+    }
+    & .single_banner{
+        @media #{$large-mobile}{
+            margin-bottom: 30px;
+        }
+    }
+}
+
+
+.sidebar_banner_eight{
+    @media #{$tablet-device}{
+        margin-top: 30px;
+    }
+    @media #{$large-mobile}{
+        margin-top: 30px;
+    }
+}
+
+
+
+
+
+

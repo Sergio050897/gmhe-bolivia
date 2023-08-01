@@ -1,0 +1,129 @@
+<div class="breadcrumbs_area">
+    <div class="container">   
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li>Detalle Producto</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>         
+</div>
+
+<div class="product_details mt-50 mb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+               <div class="product-details-tab">
+                    <div id="img-1" class="zoomWrapper single-zoom">
+                        <div class="container" *ngIf="producto?.img_url!=null">
+                            <div class="arrow-right" (click)="selectArrow()"></div>
+                            <div class="arrow-left" (click)="selectLeftArrow()"></div>
+                          <app-preview srcUrl="{{producto?.imagenes[currentPicture].img_url}}">
+                          </app-preview>
+                          <div class="wrapper">
+                          <app-thumb *ngFor="let picture of producto?.imagenes; let i = index" (click)="select(i)" srcUrl="{{picture.img_url}}"> </app-thumb>
+                          <!-- <app-thumb (click)="select(1)" srcUrl="{{pictures[1]}}"></app-thumb>
+                          <app-thumb (click)="select(2)" srcUrl="{{pictures[2]}}"></app-thumb>
+                          <app-thumb (click)="select(3)"srcUrl="{{pictures[3]}}"></app-thumb> -->
+                          </div>
+                          </div>
+                          <img *ngIf="producto?.img_url==null"src="{{url}}/{{producto?.categoria.img_url}}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product_d_right">
+                   <form action="#">
+                       
+                        <h1>{{producto?.nombre}}</h1>
+                        <div id="global">
+                            <div class="product_desc">
+                                <p>
+                                    {{producto?.resumen_web}}
+                                </p>
+                            </div>
+                        </div>
+
+                        
+                        <div class="product_variant quantity">
+                            <label>Cantidad</label>
+                            <input min="1" max="100" value="1" type="number">
+                        </div>
+                         <div class="action_links">
+                            <ul>
+                                <li class="add_to_cart"><a title="add to cart"(click)="addToCart(producto)"><i class="zmdi zmdi-shopping-cart-plus"></i> Añadir al carrito</a></li>
+                            </ul>
+                        </div>
+                        <div class="product_meta">
+                            <span>Categoria: <a href="#">{{producto?.categoria.nombre}}</a></span>
+                        </div>
+                        <div class="product_meta">
+                            <span>Marca: <a href="#">{{producto?.marca.nombre}}</a></span>
+                        </div>
+                        <div class="product_meta">
+                            <span>Serie: <a href="#">{{producto?.serie.nombre}}</a></span>
+                        </div>
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<!--product details end-->
+
+<!--product info start-->
+<div class="product_d_info">
+    <div class="container">   
+        <div class="row">
+            <div class="col-12">
+                <div class="product_d_inner">   
+                    <div class="product_info_button">    
+                        <ul class="nav" role="tablist">
+                            <li >
+                                <a class="active" data-bs-toggle="tab" href="#resumen" role="tab" aria-controls="info" aria-selected="false">Descripcion</a>
+                            </li>
+                            <li>
+                                 <a data-bs-toggle="tab" href="#ficha_tecnica" role="tab" aria-controls="sheet" aria-selected="false">Ficha Tecnica</a>
+                            </li>
+                            <li>
+                               <a data-bs-toggle="tab" href="#componentes" role="tab" aria-controls="reviews" aria-selected="false">Aplicaciones</a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tab" href="#accesorios" role="tab" aria-controls="reviews" aria-selected="false">Accesorios</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="resumen" role="tabpanel" >
+                            <div class="product_info_content" [innerHTML]="createTrustedHtml(producto?.descripcion)">
+                              
+                            </div>    
+                        </div>
+                        <div class="tab-pane fade" id="ficha_tecnica" role="tabpanel" >
+                            <div class="product_d_table" [innerHTML]="createTrustedHtml(producto?.ficha_tecnica)">
+                                
+                            </div>   
+                        </div>
+
+                        <div class="tab-pane fade" id="componentes" role="tabpanel" >
+                            <div class="reviews_wrapper" [innerHTML]="createTrustedHtml(producto?.aplicaciones)">
+                                
+                            </div>     
+                        </div>
+                        <div class="tab-pane fade" id="accesorios" role="tabpanel" >
+                            <div class="product_d_table" [innerHTML]="createTrustedHtml(producto?.accesorios)">
+                               
+                            </div>   
+                        </div>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </div>    
+</div>  

@@ -1,0 +1,214 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Configuraciones</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-slider-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Configuraciones</li>
+        </ol>
+      </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form 
+            class="row g-3 needs-validation"
+            [formGroup]="form"   
+            (ngSubmit)="register(form.value)"  
+            id="configuraciones"
+            novalidate      
+        >
+            <div class="mt-5 container row">
+                <div class="col-md-5 d-flex justify-content-start mb-3"><h5>General</h5></div>
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Empresa </label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        formControlName="nombre_empresa"
+                        id="fecha_registro"                    
+                        placeholder="Fecha Registro"  
+                        disabled="true"                      
+                        >
+                    </div>
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('nombre_empresa')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>         
+                </div>
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Ciudad </label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        formControlName="departamento"
+                        class="form-control form-control-sm"
+                        id="fecha_registro"                    
+                        placeholder="Fecha Registro"
+                        disabled="true">
+                    </div> 
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('departamento')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>           
+                </div>
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Dirección </label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        formControlName="direccion"
+                        class="form-control form-control-sm"
+                        id="fecha_registro"                    
+                        placeholder="Fecha Registro"
+                        disabled="true"
+                        >
+                    </div>  
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('direccion')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>          
+                </div>
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Contacto </label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        formControlName="contacto"
+                        id="fecha_registro"                    
+                        placeholder="Fecha Registro"
+                        disabled="true"
+                        >
+                    </div>  
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('contacto')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>          
+                </div>
+                <div class="col-md-5 d-flex justify-content-start mb-3"><h5>Cambio de Moneda</h5></div>
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Moneda $US </label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        formControlName="cambio_moneda"
+                        id="fecha_registro"                    
+                        placeholder="Fecha Registro"
+                        disabled="true"
+                        >
+                    </div> 
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('cambio_moneda')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>          
+                </div>
+
+                <div class="col-md-5 d-flex justify-content-start mb-3"><h5>Codigo de producto</h5></div>
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Dígitos Codigo de producto</label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        formControlName="cod_p_digitos"
+                        id="cod_p_digitos"                    
+                        placeholder="Fecha Registro"
+                        disabled="true"
+                        >
+                    </div> 
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('cod_p_digitos')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>          
+                </div>
+
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Sigla Codigo de producto</label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        formControlName="cod_p_prefijo"
+                        id="cod_p_prefijo"                    
+                        placeholder="Fecha Registro"
+                        disabled="true"
+                        >
+                    </div> 
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('cod_p_prefijo')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>      
+                </div>
+
+                <div class="col-md-5 d-flex justify-content-start mb-3"><h5>Reporte PDF</h5></div>
+
+                <div class="col-md-10 row mb-2">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Footer Proforma</label>   
+                    </div>
+                    <div class="col-md-5">
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        formControlName="text_footer"
+                        id="text_footer"                    
+                        placeholder="Fecha Registro"
+                        disabled="true"
+                        >
+                    </div> 
+                    <div class="col-md-2">
+                        <a (click)="disablesandenbled('text_footer')"  class="col-form"><i class='bx bxs-edit-alt'></i></a>
+                    </div>      
+                </div><br><br>
+
+                <div class="col-md-10 row mb-2" style="align-items: center;">
+                    <div class="d-flex justify-content-end col-md-5">
+                        <label for="nombre" class="col-form-label">Logo de reporte</label>   
+                    </div>
+                    <div class="col-md-5">
+              
+                        <input
+                            type="file"
+                            class="form-control form-control-sm"
+                            id="logo_url"
+                            accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                            formControlName="logo_url"
+                            (change)="onSelectFile($event)"
+                        >
+                    </div>
+
+                    <div class="col-md-2 mb-2">
+                        <img alt="{{configuracion?.logo_url}}" src="{{url}}{{configuracion?.logo_url}}" height="80"/>
+                    </div>
+
+                </div>
+                
+                
+                 
+            </div>
+            <div class="col-md-5">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  [disabled]="form.invalid || isLoading"
+                >
+                
+                  <i class="lni lni-save" *ngIf="!isLoading"></i>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+                  Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

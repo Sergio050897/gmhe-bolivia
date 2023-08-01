@@ -1,0 +1,72 @@
+<div class="modal-content">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{ titulo }}</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+      ></button>
+    </div>
+
+    <form
+      class="row g-3 needs-validation"
+      [formGroup]="form"
+      (ngSubmit)="registrarMarca(form.value)"
+      id="userform"
+      novalidate
+    >
+      <div class="modal-body">
+        
+        <div class="row">
+
+          <ng-select
+              formControlName="marca_id"
+              [items]="marca"
+              bindLabel="nombre"
+              bindValue="marca_id"
+              style="width: 100%;"
+            >
+            </ng-select>
+
+          <div class="col-md-12 form-group is-invalid">
+            <label for="nombre" class="form-label">Nombre</label>
+            
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="nombre"
+              formControlName="nombre"
+              placeholder="nombre"
+              [ngClass]="{ 'is-invalid': (form.controls.nombre.touched || form.controls.nombre.dirty) && form.controls.nombre.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.nombre" [controlName]="'Nombre de Marca'"></app-input-validator-error>
+          </div>
+        </div>
+
+
+        
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="activeModal.dismiss('Cross click')"
+        >Cancelar</button>
+        
+        <button
+          type="submit"
+          class="btn bg-color-blue"
+          [disabled]="form.invalid || isLoading"
+        >
+          <i class="lni lni-save" *ngIf="!isLoading"></i>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+  

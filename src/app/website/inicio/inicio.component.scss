@@ -1,0 +1,70 @@
+.bg-color-blue{
+    background-color:rgb( 66 133 244) ;
+    color: white;
+  }
+  .bg-color-red{
+    background-color:rgb( 219 68 55) ;
+    color: white;
+  }
+  .bg-color-yellow{
+    background-color:rgb( 244 180 0) ;
+    color: white;
+  }
+  .bg-color-green{
+    background-color:rgb( 15 157 88) ;
+    color: white;
+  }
+  .color-blue{
+    // color:rgb( 66 133 244) ;    
+    color: #3f7ddc;
+  }
+  .color-red{
+    color:rgb( 219 68 55) ;
+    
+  }
+  .color-yellow{
+    color:rgb( 244 180 0) ;
+    
+  }
+  .color-green{
+    color:rgb( 15 157 88) ;
+    
+  }
+
+  #global {
+	height: 800px;
+	width: 100%;
+	background: white;
+	overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#global::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cat{
+    position: relative;
+    float: left;
+    clear: both;
+    display: block;
+    
+  }
+
+  .ser{
+    position: relative;
+    top: 60rem;
+    float: left;
+    clear: both;
+    display: block;
+  }
+
+  .mar{
+    position: relative;
+    top: 30rem;
+    float: left;
+    clear: both;
+    display: block;
+  }

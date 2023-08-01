@@ -1,0 +1,139 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ title }}</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <form
+    class="row g-3 needs-validation"
+    [formGroup]="form"
+    (ngSubmit)="registerUser(form.value)"
+    id="userform"
+    novalidate
+  >
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6 form-group is-invalid">
+          <label for="username" class="form-label">Nombre de Usuario</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="username"
+            formControlName="username"
+            placeholder="Nombre de Usuario"
+            [ngClass]="{ 'is-invalid': (form.controls.username.touched || form.controls.username.dirty) && form.controls.username.invalid }"
+          >
+          <app-input-validator-error [control]="form.controls.username" [controlName]="'Nombre de Usuario'"></app-input-validator-error>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="password" class="form-label">Contraseña</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="password" formControlName="password"
+            placeholder="Contraseña"
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="email" formControlName="email"
+            placeholder="Ejemplo@gmail.com"
+            [ngClass]="{ 'is-invalid': (form.controls.email.touched || form.controls.email.dirty) && form.controls.email.errors }"
+          >
+          <app-input-validator-error [control]="form.controls.email" [controlName]="'Correo Electrónico'"></app-input-validator-error>
+          <!-- <div *ngIf="form.controls.email.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.email.errors.required">Correo Electrónico es requerido</div>
+          </div> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="nombres" class="form-label">Nombres</label>
+          <input
+            type="text"
+            class="form-control form-control-sm" id="nombres"
+            formControlName="nombres" placeholder="Nombres"
+            [ngClass]="{ 'is-invalid': form.controls.nombres.touched && form.controls.nombres.errors }"
+          >
+          <div *ngIf="form.controls.nombres.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.nombres.errors.required">Nombre es requerido</div>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="apellidos" class="form-label">Apellidos</label>
+          <input type="text" class="form-control form-control-sm" id="apellidos" formControlName="apellidos" placeholder="Apellidos">
+          <div *ngIf="form.controls.apellidos.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.apellidos.errors.required">Apellido es requerido</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="validationCustom03" class="form-label">Celular</label>
+          <input type="text" class="form-control form-control-sm" id="validationCustom03" formControlName="celular" placeholder="Celular">
+          <div *ngIf="form.controls.celular.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.celular.errors.required">Celular es requerido</div>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="ci" class="form-label">Cédula de Identidad</label>
+          <input type="text" class="form-control form-control-sm" id="ci" formControlName="ci" placeholder="C.I.">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="validationCustom03" class="form-label">Permisos</label>
+          <div formArrayName="roles">
+            <div *ngFor="let myOption of roles.controls; let i = index">
+              <div formGroupName="{{ i }}" class="form-check">
+                <input type="checkbox" id="a{{ i }}" class="form-check-input" [formControl]="myOption.get('selected')" (change)="obtenerRol($event,i)" />
+                <label for="a{{ i }}" class="form-check-label">
+                  {{ myOption.get('display_name').value }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div *ngIf="roles.controls[3].get('selected').value" class="col-md-6 form-group">
+          <label for="ci" class="form-label">Sucursal</label>
+          <ng-select
+            [items]="sucursal"
+            bindLabel="nombre"
+            bindValue="sucursal_id"
+            formControlName="sucursal_id"
+            style="width: 90% ;"                            
+            disabled
+          >
+          </ng-select>
+        </div>        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-bs-dismiss="modal"
+        (click)="activeModal.dismiss('Cross click')"
+      >Cancelar</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="form.invalid || isLoading"
+      >
+        <i class="lni lni-save" *ngIf="!isLoading"></i>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

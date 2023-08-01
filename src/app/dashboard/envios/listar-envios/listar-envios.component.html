@@ -1,0 +1,62 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Movimientos</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Movimientos</li>
+        </ol>
+      </nav>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+      <div class="d-lg-flex align-items-center mb-4 gap-3">
+        <div class="position-relative">
+          <input type="text" class="form-control ps-5 radius-30" placeholder="Buscar"> <span
+            class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
+        </div>
+        <div class="ms-auto">           
+            <a routerLink="../envios-crear" class="btn bg-color-blue radius-30 mt-2 mt-lg-0">
+                <i class="bx bxs-plus-square"></i>Nuevo
+              </a>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Sucursal Origen</th>
+              <th>Sucursal Destino</th>
+              <th>Fecha Registro</th>
+              <th>Usuario</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let envio of envios; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td *ngIf="envio.origen">{{envio.origen.nombre}}</td>
+                <td *ngIf="!envio.origen">Almacen</td>
+                <td *ngIf="envio.destino">{{envio.destino.nombre}}</td>
+                <td *ngIf="!envio.destino">Almacen</td>
+                <td>{{ envio.fecha_registro | date:"dd/MM/YYYY"}} </td>
+                <td>{{ envio.usuario.nombres}} {{ envio.usuario.apellidos}}</td>
+                <td>
+                    <div class="d-flex order-actions">      
+                      <a (click)="openPdf(envio.envio_id)" class="ms-3"><i class='bx bxs-show color-blue'></i></a>            
+                      <a (click)="delete(envio.envio_id)" class="ms-3"><i class='bx bxs-trash color-red'></i></a>                      
+                    </div>
+                  </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

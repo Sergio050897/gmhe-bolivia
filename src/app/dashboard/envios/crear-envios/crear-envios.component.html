@@ -1,0 +1,164 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Movimientos</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Movimientos</li>
+        </ol>
+      </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form 
+            class="row g-3 needs-validation"
+            [formGroup]="form"     
+            id="envios"
+            (ngSubmit)="register(form.value)"
+            novalidate      
+        >
+        <div class="row d-flex align-items-center mt-3">
+            <div class="col-md-6 form-group">
+                <label class="form-label">Origen</label>
+                <div class="input-group">
+                    <ng-select
+                        formControlName="origen"
+                        [items]="sucursales"
+                        class=""                        
+                        bindLabel="nombre"
+                        bindValue="sucursal_id"
+                        placeholder="Sucursal"
+                        style="width: 100%;"  
+                        (change)="onSucursal($event)"                      
+                    >
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label class="form-label">Destino</label>
+                <div class="input-group">
+                    <ng-select
+                        formControlName="destino"
+                        [items]="sucursales"
+                        class=""                        
+                        bindLabel="nombre"
+                        bindValue="sucursal_id"
+                        placeholder="Sucursal"  
+                        style="width: 100%;"                         
+                    >
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-3 form-group is-invalid">
+                <label for="nombre" class="form-label">Fecha Registro</label>
+                <input
+                type="date"
+                class="form-control form-control-sm"
+                id="fecha_registro"
+                formControlName="fecha_registro"
+                placeholder="Fecha Registro"
+                [ngClass]="{ 'is-invalid': 
+                (form.controls.fecha_registro.touched || 
+                form.controls.fecha_registro.dirty) 
+                && form.controls.fecha_registro.invalid }"
+                >
+                <!-- <app-input-validator-error 
+                [control]="form.controls.nit" 
+                [controlName]="'Nit'"></app-input-validator-error> -->
+            </div>
+            
+        </div>
+        <div class="mt-4 mb-5">
+            <div>
+             <h5>PRODUCTO</h5>
+             <hr>
+            </div>
+             <div class="container">
+                 <div class="">
+                 <table class="table table-borderless mb-0">
+                   <thead class="">
+                     <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">Producto</th>
+                       <th scope="col">Stock</th>
+                       <th scope="col">Cantidad</th>
+                       <th>
+                         <!-- Acciones -->
+                         <div class="d-flex order-actions ">
+                           <a (click)="sumarUno()" class="bg-color-blue text-white"><i class='bx bx-list-plus'></i></a>
+                         </div>
+                       </th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr *ngFor="let basic of detalle.controls; let i = index">
+                         <th scope="row">{{i+1}}</th>
+                         <td  style="width: 50% ;"> 
+                           <ng-select
+                             #producto_id{{i}}
+                             [items]="productos"
+                             class="form-select single-select" 
+                             bindLabel="nombre"
+                             bindValue="producto_id"
+                             [formControl]="basic.get('producto_id')"
+                             class="custom"
+                             disabled
+                             (change)="onProducto($event,i)"
+                           >
+                           </ng-select>
+                         </td>
+                         <td>
+                          <input
+                          type="number"
+                          class="form-control"
+                          [formControl]="basic.get('stock')"
+                          disabled="true"
+                          >
+                         </td> 
+                         <td>
+                             <input
+                             type="number"
+                             class="form-control"
+                             [formControl]="basic.get('cantidad')"
+                             >
+                         </td>        
+                         <td>
+                             <div class="d-flex order-actions">
+                                 <a (click)="restarUno(i)" class="bg-color-yellow text-white"><i class='bx bx-minus'></i></a>                               
+                               </div>
+                         </td>                   
+                     </tr>
+         
+                   </tbody>
+                 </table>
+                 </div>
+                 
+             </div>
+         </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <button 
+                  type="button"
+                  class="btn btn-danger btn-lg"
+                  routerLink="../envios"
+                >Cancelar</button>
+                   &nbsp;
+            </div>
+            <div class="col-md-5">
+                <button
+                  type="submit"
+                  class="btn bg-color-blue btn-lg"
+                  [disabled]="form.invalid || isLoading"
+                >
+                
+                  <i class="lni lni-save" *ngIf="!isLoading"></i>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+                  Guardar
+                </button>
+            </div>
+        </div>
+        </form>  
+    </div>
+</div>

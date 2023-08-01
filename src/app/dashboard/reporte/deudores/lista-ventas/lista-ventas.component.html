@@ -1,0 +1,127 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Clientes Deudores</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Clientes Deudores</li>
+        </ol>
+      </nav>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+      <!-- <form class="" [formGroup]="form">
+      <div class="d-lg-flex align-items-center mb-4 gap-3">
+        <div class="position-relative">
+          <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order" formControlName="term"> <span
+            class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
+        </div>  
+        <div class="ms-auto">
+          <button class="btn bg-color-blue form-control ps-3 radius-30" type="button" (click)="openPdf()">
+            <i class="bx bx-printer" ></i> Imprimir Reporte
+          </button>
+        </div>
+        <div>
+          <button class="btn bg-color-blue form-control ps-3 radius-30" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <i class="bx bx-slider"></i> Mas Filtros
+          </button>
+        </div>         
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="container card card-body">  
+          <div class="row">        
+            <div class="col-md-4">              
+              <div class="mb-2">
+                <label for="" class="form-label">FECHAS</label>
+                <ng-select
+                    [items]="array"                     
+                    bindLabel="fecha"
+                    bindValue="valor"
+                    style="width: 80% ;"
+                    (change)="onFecha($event)"   
+                    formControlName="filter"                 
+                >
+                </ng-select> 
+              </div>
+              <div *ngIf="itemArray == 'day'">
+                <input type="date" class="form-control ps-3" formControlName="fecha" style="width: 80% ;">
+              </div>  
+              <div *ngIf="itemArray == 'month'">
+                  <input type="month" class="form-control ps-3" formControlName="fecha" style="width: 80% ;">
+              </div> 
+              <div *ngIf="itemArray == 'year'">
+                  <ng-select
+                  [items]="years"                     
+                  bindLabel="years"
+                  bindValue="years"
+                  style="width: 80% ;"  
+                  formControlName="fecha"                 
+              >
+              </ng-select>
+                </div>                   
+            </div>                     
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label for="" class="form-label">CLIENTES</label>
+                <ng-select
+                    [items]="clientes"                     
+                    bindLabel="razon_social"
+                    bindValue="cliente_id"
+                    style="width: 80% ;"
+                    (change)="onFecha($event)"   
+                    formControlName="cliente_id"               
+                >
+                </ng-select> 
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label for="" class="form-label">USUARIOS</label>
+                <ng-select
+                    [items]="vendedores"                     
+                    bindLabel="nombres"
+                    bindValue="id"
+                    style="width: 80% ;"
+                    (change)="onFecha($event)"   
+                    formControlName="usuario_id"                 
+                >
+                </ng-select> 
+              </div>
+            </div>
+          </div>      
+        </div>
+      </div>
+      </form>
+      <div>
+        {{form.value|json}}
+      </div> -->
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead class="table-light">
+            <tr>
+               <th>Nro.</th>
+               <th>Fecha Registro</th>
+               <th>Tipo Moneda</th>
+               <th>Total</th>
+               <th>deuda</th>
+            </tr>
+          </thead>
+          <tbody>
+             <tr *ngFor="let item of ventas; let i = index">
+                <th>{{i+1}}</th>
+                <td>{{item.fecha_registro|date:"dd/MM/YYYY" }}</td>
+                <td *ngIf="item.dolar==1" style="text-transform:uppercase ;"> {{moneda.txt_dolar}} </td>
+                <td *ngIf="item.dolar==0" style="text-transform:uppercase ;"> {{moneda.txt_boliviano}} </td>
+                <td>{{item.total}}</td>
+                <td>{{item.deuda}}</td>
+             </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

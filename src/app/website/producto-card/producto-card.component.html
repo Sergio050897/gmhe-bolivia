@@ -1,0 +1,41 @@
+  <div class="single_product">
+       <div class="product_thumb">
+           <a *ngIf="product?.img_url!=null" routerLink="/inicio/productos/{{product.producto_id}}"><img src="{{url}}{{product?.img_url}}" alt=""></a>
+           <a *ngIf="product?.img_url==null"routerLink="/inicio/productos/{{product.producto_id}}"><img src="{{url}}{{product?.categoria.img_url}}" alt=""></a>
+       </div>
+       <div class="product_content">
+        <div class="product_rating">
+          <ul>
+            <li *ngIf="product?.serie_id==null"></li>
+            <li *ngIf="product?.serie_id!=null">Serie: {{product?.serie.nombre}}</li>
+          </ul>
+         </div>
+           <div class="product_name">
+            <h3><a routerLink="/inicio/productos/{{product.producto_id}}">{{product?.nombre}}</a> </h3>
+            <span>Categoria: {{product?.categoria.nombre}}</span>
+           </div>
+           <div class="action_links">          
+            <ul>
+              <li class="add_to_cart">
+                <a
+                type="button"
+                class="btn btn-outline-secondary me-2"
+                placement="top"
+                [ngbPopover]="popContent"
+                popoverTitle="Aplicaciones"
+              >
+                Aplicaciones
+              </a>
+              </li>
+            </ul>
+         </div>
+         <ng-template #popContent>
+          <div style="width: 450px ;" >
+            <div id="global" [innerHTML]="createTrustedHtml(product?.aplicaciones)">
+
+            </div>
+          </div>
+        </ng-template>
+       </div>
+   </div>
+

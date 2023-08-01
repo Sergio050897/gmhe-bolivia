@@ -1,0 +1,123 @@
+
+<header class="header_area">
+
+    <!-- <div class="header_top header_top_six">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                   <div class="welcome_text">
+                       <p>Bienvenido a <span>MADAK MUSIC STORE</span> </p>
+                   </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="top_right text-right">
+                        <ul>
+                            <li class="currency"><a href="#"><i class="fa fa-dollar"></i> Moneda <i class="zmdi zmdi-caret-down"></i></a>
+                                <ul class="dropdown_currency">
+                                    <li><a href="#">Bs – Boliviano</a></li>
+                                </ul>
+                            </li>
+                            <li class="top_links" *ngIf="tokenStorage.getUser()!=false"><a><i class="zmdi zmdi-account"></i> {{tokenStorage.getUser().nombres}} <i class="zmdi zmdi-caret-down"></i></a>
+                                <ul class="dropdown_links">
+                                    <li><a href="">Mis Pedidos</a></li>
+                                    <li><a (click)="logout()">Salir</a></li>
+                                </ul>
+                            </li>
+                            <li class="top_links" *ngIf="tokenStorage.getUser()==false"><a><i class="zmdi zmdi-account"></i> Panel <i class="zmdi zmdi-caret-down"></i></a>
+                                <ul class="dropdown_links">
+                                    <li><a (click)="registerModal()">Iniciar Sesion / Registrarse</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
+    <div class="header_middle header_middle_six">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="#/inicio"><img src="../../../assets/images/GHMED.jpeg" width="50px"
+                             alt=""></a>
+                        <h1>GMHE S.R.L.</h1>
+                    </div>
+                </div>
+                <div class="col-lg-9 d-flex justify-content-end">
+                    <div class="header_middle_inner">
+                        <div class="search-container ">
+                            <div class="main_menu header_position menu_six">
+                                                <nav>
+                                                    <ul>
+                                                        <li><a href="#/inicio"><i class="zmdi zmdi-home"></i> Inicio</a></li>
+                                                        <li><a routerLink="/auth/sign-in">Iniciar Sesion</a></li>
+                                                        <!-- <li><a href="#/inicio/nosotros">Quienes Somos</a></li>
+                                                        <li><a href="#/inicio/productos">Productos</a></li>
+                                                        <li><a href="#/inicio/servicios">Servicios</a></li>
+                                                        <li><a href="#/inicio/contactanos">Contactos</a></li> -->
+                                                    </ul>
+                                                </nav>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header center area end-->
+
+    <!--header middel start-->
+
+    <!--header middel end-->
+
+</header>
+<!--header area end-->
+
+<router-outlet></router-outlet>
+
+
+<!-- <footer>
+    <div class="logo p-4">
+        <img src="../../../assets/images/madak/MADAK.png" width="150px"  class="img-fluid">
+    </div>
+    <div class="container b-3">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h5>Nuestras Redes Sociales</h5>
+            </div>
+            <div class="col-md-6">
+                <h5 class="text"> Visitanos</h5>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6 p-3 d-flex justify-content-start">
+                <ul class="redes">
+                    <li class="p-2"><a target="_blank" href="https://www.facebook.com/MadakMusicBolivia" class="text-white font" ><i class="fa fa-facebook-square " aria-hidden="true"></i> Madakmusic</a></li>
+                    <li class="p-2"><a target="_blank" href="https://www.instagram.com/madakmusic/" class="text-white font" ><i class="fa fa-instagram " aria-hidden="true"></i> Madakmusic</a></li>
+                    <li class="p-2"><a target="_blank" href="https://api.whatsapp.com/send?phone=59159176405764&text=quiero%20+%20informaci%C3%B3n" class="text-white font" ><i class="fa fa-whatsapp " aria-hidden="true"></i> (+591) 76505765</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 p-3">
+                <ul class="redes">
+                    <li class="p-2"><a class="text-white font " ><i class="fa fa-map-marker " aria-hidden="true"></i> 25 de mayo #780 Cochabamba, Bolivia</a></li>
+                    <li class="p-2"><a class="text-white font " ><i class="fa fa-phone-square " aria-hidden="true"></i> (+591) 44553467</a></li>
+                    <li class="p-2"><a class="text-white font " ><i class="fa fa-envelope-o " aria-hidden="true"></i> jfernandez_bol@hotmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
+                <hr>
+                <p class="text-center mb-4" >Copyright © 2022 <a>Madak Music</a> Todos Los Derechos Reservados.</p>
+            </div>
+        </div>
+
+    </div>
+</footer> -->

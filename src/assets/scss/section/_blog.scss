@@ -1,0 +1,204 @@
+/* 05. blog area css here */
+.sidebar_blog_carousel{
+    border: 1px solid $grey_color;
+    border-radius: 4px;
+    @media #{$tablet-device}{
+        border: 0;
+    }
+    & .owl-nav{
+        & > * {
+            position: absolute;
+            top: -53px;
+            right: 40px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid $grey_color !important;
+            background: #fff;
+            border-radius: 100%;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            text-align: center;
+            line-height: 30px;
+            @media #{$large-mobile}{
+               top: -48px;
+            }
+            &:hover{
+                background: $secondary_color !important;
+                border-color: $secondary_color !important;
+                color: #ffffff !important;
+            }
+            &.owl-next{
+                right: 0;
+            }
+        }
+    }
+}
+.sidebar_blog_list{
+    @media #{$tablet-device}{
+        border: 1px solid $grey_color;
+    }
+}
+
+
+.sidebar_blog_content {
+	padding: 22px 20px;
+    overflow: hidden;
+    & .post_meta{
+        & p{
+            font-size: 13px;
+            line-height: 20px;
+        }
+    }
+    & .post_title{
+        & h3{
+            font-size: 14px;
+            text-transform: capitalize;
+            font-weight: 700;
+            line-height: 25px;
+            margin-bottom: 8px;
+            & a{
+                &:hover{
+                    color: $secondary_color;
+                }
+            }
+        }
+    }
+    & .post_comment{
+        float: right;
+    }
+}
+
+.sidebar_blog_thumb{
+    & a{
+        & img{
+            border-radius: 4px;
+        }
+    }
+}
+
+
+.sidebar_blog_six{
+    & .owl-nav{
+        & > * {
+            top: -64px;
+            &:hover{
+                background: $secondary_color2 !important;
+                border-color: $secondary_color2 !important;
+            }
+        }
+    }
+    & .post_title{
+        & h3{
+            & a{
+                &:hover{
+                    color: $secondary_color2;
+                }
+            }
+        }
+    }
+}
+
+
+.home_blog_section{
+    & .section_title{
+        & h2{
+            padding: 0;
+        }
+    }
+}
+
+.blog_carousel_seven{
+    & .col-lg-4{
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    &.owl-carousel{
+        & .owl-nav{
+            display: block;
+            & > * {
+                position: absolute;
+                top: -53px;
+                right: 54px;
+                width: 32px;
+                height: 32px;
+                border: 1px solid #e5e5e5 !important;
+                background: #fff;
+                border-radius: 100%;
+                -webkit-transition: 0.5s;
+                transition: 0.5s;
+                text-align: center;
+	            line-height: 30px;
+                @media #{$large-mobile}{
+                    top: -48px;
+                }
+                &:hover{
+                    background: $secondary_color3 !important;
+                    border-color: $secondary_color3 !important;
+                    color: $white !important;
+                }
+                &.owl-next{
+                    right: 13px;
+                }
+            }
+        }
+    }
+    & .sidebar_blog_list{
+        overflow: hidden;
+        @media #{$tablet-device}{
+            border: 0;
+        }
+        
+    }
+    & .sidebar_blog_content{
+        border-bottom: 1px solid $grey_color;
+        background: $body-color;
+        width: 90%;
+        float: right;
+        position: relative;
+        top: -40px;
+        @media #{$desktop-device}{
+            width: 85%;
+        }
+    }
+    & .post_title{
+        & h3{
+            & a{
+                &:hover{
+                    color: $secondary_color3;
+                }
+            }
+        }
+    }
+    
+}
+
+.facebook_like_box{
+    & .fb_iframe_widget{
+        width: 100%;
+        & span{
+            width: 100% !important;
+            & iframe{
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Proformas</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Proformas</li>
+        </ol>
+      </nav>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+      <div class="d-lg-flex align-items-center mb-4 gap-3">
+        <div class="position-relative">
+          <input type="text" class="form-control ps-5 radius-30" placeholder="Buscar Proforma" [formControl]="Buscador"> <span
+            class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
+        </div>
+        <div class="ms-auto" style="width: 200px">
+          <input type="text" class="form-control ps-4 radius-30" placeholder="Buscar por Número" [formControl]="Numero">
+        </div>
+        <div class="">
+          <a routerLink="../crear-proformas" class="btn bg-color-blue radius-30 mt-2 mt-lg-0">
+            <i class="bx bxs-plus-square"></i>Nueva Proforma
+          </a>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Numero</th>
+              <th>Nit</th>
+              <th>Razon Social</th>
+              <th>Fecha Registro</th>
+              <th>Fecha Vigencia</th>
+              <th>Factura</th>
+              <th>Tipo de Moneda</th>
+              <th>Total de Compra</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let proforma of proformas; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ proforma.txt_nro}} </td>
+                <td>{{ proforma.nit}} </td>
+                <td>{{ proforma.razon_social}} </td>
+                <td>{{ proforma.fecha_registro | date:"dd/MM/YYYY"}} </td>
+                <td>{{ proforma.fecha_vigencia | date:"dd/MM/YYYY"}} </td>
+                <td *ngIf="!proforma.factura"> Si </td>
+
+                <td *ngIf="proforma.dolar==1" style="text-transform:uppercase ;"> {{moneda.txt_dolar}} </td>
+                <td *ngIf="proforma.dolar==0" style="text-transform:uppercase ;"> {{moneda.txt_boliviano}} </td>
+                <td> {{proforma.total}} </td>
+                <td>
+                  <div class="d-flex order-actions">
+                    <a [routerLink]="['../crear-proformas/', proforma.proforma_id]" type="button"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar Proforma" ><i class='bx bxs-edit color-yellow'></i></a>
+                    <a (click)="delete(proforma.proforma_id)" class="ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar Proforma"><i class='bx bxs-trash color-red'></i></a>
+                    <a (click)="openPdf(proforma.proforma_id)" class="ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver PDF"><i class='fa fa-file-pdf-o color-blue'></i></a>
+                    <a (click)="vender(proforma.proforma_id)" class="ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Pasar proforma a venta" ><i class='bx bxs-dollar-circle color-green'></i></a>
+                  </div>
+                </td>
+                <td class="col-12" *ngIf="loadingScroll">
+                  <app-spinner></app-spinner>
+                </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

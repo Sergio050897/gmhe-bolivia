@@ -1,0 +1,98 @@
+.btn-madak{
+  background: rgb(0,80,216);
+  background: linear-gradient(184deg, rgba(0,80,216,1) 0%, rgba(0,40,108,1) 100%);
+    color: white;
+}
+
+.banner{
+    background: rgb(42,41,42);
+    background: linear-gradient(101deg, rgba(42,41,42,1) 12%, rgba(126,126,126,1) 43%, rgba(167,167,167,1) 58%);
+}
+
+
+
+// .banner {
+//     position: relative;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background: rgb(42,41,42);
+//     background: linear-gradient(101deg, rgba(42,41,42,1) 12%, rgba(126,126,126,1) 43%, rgba(167,167,167,1) 58%);
+//     background-size: cover;
+//     background-position: center;
+//   }
+//   .banner .content {
+//     max-width: 900px;
+//     text-align: center;
+//   }
+
+//   @media (max-width: 991px) {
+//     section {
+//       padding: 20px;
+//     }
+//     .banner .content h2 {
+//       font-size: 3em;
+//       color: #fff;
+//     }
+//     .row {
+//       flex-direction: column;
+//     }
+//     .row .col50 {
+//       position: relative;
+//       width: 100%;
+//     }
+//     .row .col50 .imgBx {
+//       height: 300px;
+//       margin-top: 20px;
+//     }
+//     .menu .content {
+//       margin-top: 20px;
+//     }
+//     .menu .content .box {
+//       margin: 10px;
+//     }
+//     .menu .content .box .imgBx {
+//       height: 260px;
+//     }
+//     .title {
+//       text-align: center;
+//     }
+//     .titleText {
+//       font-size: 1.8em;
+//       line-height: 1.5em;
+//       margin-bottom: 15px;
+//       font-weight: 300;
+//     }
+//     .testimonials .content .box {
+//       width: 340px;
+//       margin: 10px;
+//       padding: 20px;
+//     }
+//     .contactForm {
+//       padding: 35px 40px;
+//     }
+//   }
+
+
+  .wrapper{
+    width:80vw;
+    margin:0 auto;
+    display: grid;
+    grid-gap: 6vw;
+
+
+    /*
+    repeat - just repeat that section
+    auto-fit - insted of a number we tell the browser to see how much it need
+    minmax(minimum that need , if not have enought of the minimum value so it fallback to 1fr);
+
+    so the browser try to fit as much as he can with the space he have each 250px item when he has more room to fit it will give another column if not it will fall to the 1fr
+    */
+    grid-template-columns: repeat( auto-fit, minmax(250px,1fr) );
+  }
+
+  .img-p{
+    width: 100%;
+    display: block;
+  }

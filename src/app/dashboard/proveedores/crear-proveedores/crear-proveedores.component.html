@@ -1,0 +1,112 @@
+<div class="modal-content">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{ titulo }}</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+      ></button>
+    </div>
+
+    <form
+      class="row g-3 needs-validation"
+      [formGroup]="form"
+      (ngSubmit)="registrarProveedor(form.value)"
+      id="userform"
+      novalidate
+    >
+      <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-12 form-group is-invalid">
+            <label for="razon_social" class="form-label">Razón Social</label>
+            
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="razon_social"
+              formControlName="razon_social"
+              placeholder="razón social"
+              [ngClass]="{ 'is-invalid': (form.controls.razon_social.touched || form.controls.razon_social.dirty) && form.controls.razon_social.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.razon_social" [controlName]="'Razón Social'"></app-input-validator-error>
+          </div>
+          <div class="col-md-12 form-group is-invalid">
+            <label for="nit" class="form-label">Nit</label>
+            
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="nit"
+              formControlName="nit"
+              placeholder="nit"
+              [ngClass]="{ 'is-invalid': (form.controls.nit.touched || form.controls.nit.dirty) && form.controls.nit.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.nit" [controlName]="'Nit'"></app-input-validator-error>
+          </div>
+
+          <div class="col-md-12 form-group is-invalid">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="telefono"
+              formControlName="telefono"
+              placeholder="teléfono"
+              [ngClass]="{ 'is-invalid': (form.controls.telefono.touched || form.controls.telefono.dirty) && form.controls.telefono.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.telefono" [controlName]="'Teléfono'"></app-input-validator-error>
+          </div>
+
+          <div class="col-md-12 form-group is-invalid">
+            <label for="celular" class="form-label">Celular</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              id="celular"
+              formControlName="celular"
+              placeholder="celular"
+              [ngClass]="{ 'is-invalid': (form.controls.celular.touched || form.controls.celular.dirty) && form.controls.celular.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.celular" [controlName]="'Celular'"></app-input-validator-error>
+          </div>
+
+          <div class="col-md-12 form-group is-invalid">
+            <label for="contacto" class="form-label">Nombre de Contacto</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="contacto"
+              formControlName="contacto"
+              placeholder="Nombre de Contacto"
+              [ngClass]="{ 'is-invalid': (form.controls.contacto.touched || form.controls.contacto.dirty) && form.controls.contacto.invalid }"
+            >
+            <app-input-validator-error [control]="form.controls.contacto" [controlName]="'Nombre de Contacto'"></app-input-validator-error>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="activeModal.dismiss('Cross click')"
+        >Cancelar</button>
+        
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.invalid || isLoading"
+        >
+          <i class="lni lni-save" *ngIf="!isLoading"></i>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+          Guardar
+        </button>
+      </div>
+    </form>
+</div>
+  

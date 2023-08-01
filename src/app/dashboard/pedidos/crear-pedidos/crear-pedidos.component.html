@@ -1,0 +1,254 @@
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Pedidos</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Registrar Pedidos</li>
+        </ol>
+      </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form
+            class="row g-3 needs-validation"
+            [formGroup]="form"
+            id="pedidos"
+            (ngSubmit)="register(form.value)"
+            novalidate
+        >
+        <div class="row d-flex align-items-center mt-3">
+            <div class="col-md-10 form-group mb-3">
+                <label class="form-label">Proveedores</label>
+                <div class="input-group">
+                    <ng-select
+                        formControlName="proveedor_id"
+                        [items]="proveedores"
+                        bindLabel="texto"
+                        bindValue="proveedor_id"
+                        style="width: 100%;"
+                        (change)="OnProducto($event)"
+                    >
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-3 form-group is-invalid">
+                <label for="nombre" class="form-label">Fecha Pedido</label>
+                <input
+                type="date"
+                class="form-control form-control-sm"
+                id="fecha_pedido"
+                formControlName="fecha_pedido"
+                placeholder="Fecha Pedido"
+                [ngClass]="{ 'is-invalid':
+                (form.controls.fecha_pedido.touched ||
+                form.controls.fecha_pedido.dirty)
+                && form.controls.fecha_pedido.invalid }"
+                >
+                <!-- <app-input-validator-error
+                [control]="form.controls.nit"
+                [controlName]="'Nit'"></app-input-validator-error> -->
+            </div>
+            <div class="col-md-3 form-group is-invalid">
+                <label for="nombre" class="form-label">Fecha Registro</label>
+                <input
+                type="date"
+                class="form-control form-control-sm"
+                id="fecha_registro"
+                formControlName="fecha_registro"
+                placeholder="Fecha Registro"
+                disabled="true"
+                [ngClass]="{ 'is-invalid':
+                (form.controls.fecha_registro.touched ||
+                form.controls.fecha_registro.dirty)
+                && form.controls.fecha_registro.invalid }"
+                >
+                <!-- <app-input-validator-error
+                [control]="form.controls.nit"
+                [controlName]="'Nit'"></app-input-validator-error> -->
+            </div>
+            <div class="col-md-3 form-group is-invalid">
+              <label for="nombre" class="form-label">Moneda</label>
+              <ng-select
+              #id{{i}}
+              [items]="array"
+              class="form-select single-select"
+              bindLabel="tipo_moneda"
+              bindValue="valor"
+              formControlName="dolar"
+              class="custom"
+              disabled
+              [ngClass]="{ 'is-invalid':
+              (form.controls.dolar.touched ||
+              form.controls.dolar.dirty)
+              && form.controls.dolar.invalid }"
+            >
+            </ng-select>
+            </div>
+        </div>
+        <div class="mt-4 mb-5">
+            <div>
+             <h5>PRODUCTOS</h5>
+             <hr>
+            </div>
+             <div class="container">
+                 <div class="table-responsive">
+                 <table class="table table-borderless">
+                   <thead>
+                     <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">Codigo</th>
+                       <th scope="col">Marca</th>
+                       <th style="width: 350px;">Medicamento</th>
+                       <th style="width: 80px;" scope="col">Resumen</th>
+                       <th style="width: 80px;" scope="col">Cantidad</th>
+                       <th scope="col">Precio Compra</th>
+                       <th scope="col">Sub Total</th>
+                       <th>
+                         <!-- Acciones -->
+                         <div class="d-flex order-actions ">
+                           <a (click)="sumarUno()" class="bg-color-blue text-white"><i class='bx bx-list-plus'></i></a>
+                         </div>
+                       </th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr *ngFor="let basic of detalle.controls; let i = index">
+                         <th scope="row">{{i+1}}</th>
+                         <td scope="row">{{basic.get('codigo').value}}</td>
+                         <td scope="row">{{basic.get('marca').value}}</td>
+                         <td>
+                           <ng-select
+                             #producto_id{{i}}
+                             [items]="productos"
+                             class="form-select single-select"
+                             bindLabel="texto"
+                             bindValue="producto_id"
+                             [formControl]="basic.get('producto_id')"
+                             class="custom"
+                             style="width: 350px;"
+                             (change)="onProductoArray($event,i)"
+                           >
+                           </ng-select>
+                         </td>
+                         <td>
+                          <div class="d-flex order-actions" style="width: 80px;">
+                            <a class="bg-color-green text-white"
+                            placement="bottom"
+                            [ngbPopover]="popContent"
+                            popoverTitle="Resumen"
+                            ><i class='bx bx-show'></i></a>
+                          </div>
+                          <ng-template #popContent>
+                            <div style="width: 450px ;" >
+                              <div id="global">
+                                  {{basic.get('resumen').value}}
+                              </div>
+                            </div>
+                          </ng-template>
+                         </td>
+                         <td>
+                             <input
+                             type="number"
+                             class="form-control"
+                             [formControl]="basic.get('cantidad')"
+                             (change)="onCantidad($event,i)"
+                             style="width: 80px;"
+                             >
+                         </td>
+                         <td>
+                             <input
+                             type="number"
+                             class="form-control"
+                             [formControl]="basic.get('precio_compra')"
+                             (change)="onCantidad($event,i)"
+                             >
+
+                             <!-- {{ basic.get('precio').value | currency: 'BOB':'symbol-narrow':'1.2-2' }} -->
+                         </td>
+                         <td>
+                           <input
+                             type="text"
+                             class="form-control"
+                             [formControl]="basic.get('total')"
+                             disabled="true"
+                             >
+                             <!-- {{ basic.get('total').value | currency: 'BOB':'symbol-narrow':'1.2-2' }} -->
+                         </td>
+                         <td>
+                             <div class="d-flex order-actions">
+                                 <a (click)="restarUno(i)" class="bg-color-yellow text-white"><i class='bx bx-minus'></i></a>
+                               </div>
+                         </td>
+                     </tr>
+
+                   </tbody>
+                   <tfoot>
+                     <tr>
+                       <td colspan="6"></td>
+                       <td>TOTAL Bs.</td>
+                       <td>
+                            <input
+                             type="text"
+                             class="form-control form-control-sm"
+                             id="total"
+                             disabled="true"
+                             formControlName="total"
+                             [ngClass]="{ 'is-invalid':
+                             (form.controls.total.touched ||
+                             form.controls.total.dirty)
+                             && form.controls.total.invalid }"
+
+                             >
+                       </td>
+                     </tr>
+                     <tr>
+                      <td colspan="6"></td>
+                      <td>TOTAL $US</td>
+                      <td>
+                           <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            id="total"
+                            disabled="true"
+                            formControlName="total$US"
+                            [ngClass]="{ 'is-invalid':
+                            (form.controls.total.touched ||
+                            form.controls.total.dirty)
+                            && form.controls.total.invalid }"
+
+                            >
+                      </td>
+                    </tr>
+                   </tfoot>
+                 </table>
+                 </div>
+             </div>
+         </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-lg"
+                  routerLink="/dashboard/pedidos/list-pedidos"
+                >Cancelar</button>
+                   &nbsp;
+            </div>
+            <div class="col-md-5">
+                <button
+                  type="submit"
+                  class="btn bg-color-blue btn-lg"
+                  [disabled]="form.invalid || isLoading"
+                >
+
+                  <i class="lni lni-save" *ngIf="!isLoading"></i>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+                  Guardar
+                </button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

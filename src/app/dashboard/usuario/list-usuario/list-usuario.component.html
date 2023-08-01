@@ -1,0 +1,113 @@
+<!--breadcrumb-->
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+  <div class="breadcrumb-title pe-3">Usuario</div>
+  <div class="ps-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 p-0">
+        <li class="breadcrumb-item"><a href="#" (click)="$event.preventDefault()"><i class="bx bx-home-alt"></i></a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- <div class="ms-auto">
+      <div class="btn-group">
+          <button type="button" class="btn btn-primary">Settings</button>
+          <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="#" (click)="$event.preventDefault()">Action</a>
+              <a class="dropdown-item" href="#" (click)="$event.preventDefault()">Another action</a>
+              <a class="dropdown-item" href="#" (click)="$event.preventDefault()">Something else here</a>
+              <div class="dropdown-divider"></div>	<a class="dropdown-item" href="#" (click)="$event.preventDefault()">Separated link</a>
+          </div>
+      </div>
+  </div> -->
+</div>
+<!--end breadcrumb-->
+
+<div class="card">
+  <div class="card-body">
+    <div class="d-lg-flex align-items-center mb-4 gap-3">
+      <div class="position-relative">
+        <input type="text" class="form-control ps-5 radius-30" placeholder="Buscar Usuario" [formControl]="BuscarForm"> <span
+          class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
+      </div>
+      <div class="position-relative">
+        <form [formGroup]="countryForm">
+          <select class="form-control radius-30" formControlName="selectRolForm" (change)="changeClassesLevel($event.target.value)">
+            <option value="">Todos</option>
+            <option *ngFor="let rol of roles2" value="{{ rol.id }}">{{ rol.display_name }}</option>
+          </select>
+        </form>
+      </div>
+      <div class="ms-auto">
+        <button
+          (click)="createUser()"
+          class="btn bg-color-blue radius-30 mt-2 mt-lg-0"
+        >
+          <i class="bx bxs-plus-square"></i>Nuevo Usuario
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Roles</th>
+            <th>Ci</th>
+            <th>Habilitar</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody
+          infinite-scroll
+          [infiniteScrollDistance]="3"
+          [infiniteScrollUpDistance]="50"
+          (scrolled)="onScroll()"
+          (scrolledUp)="onUp()"
+          [infiniteScrollDisabled]="disableScroll"
+        >
+          <tr *ngFor="let user of users; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ user.nombres }} {{ user.apellidos }}</td>
+            <td>
+              <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3" *ngFor="let rol of user.roles">
+                <i class='bx bxs-circle me-1'></i>{{ rol.display_name }}
+              </div>
+            </td>
+            <td>{{ user.ci }}</td>
+            <td>
+              <app-switch [id]="user.id" [estado]="user.habilitado" (clickEnable)="enableUser(user.id)"></app-switch>
+            </td>
+            <td>
+              <div class="d-flex order-actions">
+                <a (click)="editModal(user.id)"><i class='bx bxs-edit color-yellow'></i></a>
+                <!-- <swal
+                  #deleteSwal
+                  title="Eliminar {{ user.username }}?"
+                  text="Esta acción no podrá revertirce."
+                  icon="warning"
+                  confirmButton="btn btn-success"
+                  cancelButton="btn btn-danger"
+                  confirmButtonText="Aceptar"
+                  cancelButtonText="Cancelar"
+                  [showCancelButton]="true"
+                  [focusConfirm]="true"
+                  [buttonsStyling]="true"
+                  (confirm)="delete(user.id)">
+                </swal> 
+                <a [swal]="deleteSwal" class="ms-3"><i class='bx bxs-trash'></i></a>-->
+                <a (click)="delete(user.id)" class="ms-3" ><i class='bx bxs-trash'></i></a> 
+              </div>
+            </td>
+            <td class="col-12" *ngIf="loadingScroll">
+              <app-spinner></app-spinner>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

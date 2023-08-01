@@ -1,0 +1,210 @@
+<div class="modal-content">    
+  <div class="container row mb-3">
+    <div class="col-md-6">
+      <div class="container newletter-title mt-4">
+        <!-- <h5>{{title}}</h5> -->
+      </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+        <div class="logo">
+            <a><img src="../../../assets/images/madak/logonegro.png"
+                 width="200"></a>
+        </div>
+    </div>
+  </div>
+
+    <div class="product_d_info">
+      <div class="container">   
+          <div class="row">
+              <div class="col-12">
+                  <div class="product_d_inner">   
+                      <div class="product_info_button">    
+                          <ul class="nav" role="tablist">
+                              <li >
+                                  <a class="active" data-bs-toggle="tab" href="#iniciarsesion" role="tab" aria-controls="info" aria-selected="false">Iniciar Sesión</a>
+                              </li>
+                              <li>
+                                   <a data-bs-toggle="tab" href="#registrarse" role="tab" aria-controls="sheet" aria-selected="false">Regístrarse</a>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="tab-content">
+                          <div class="tab-pane fade show active" id="iniciarsesion" role="tabpanel" >
+                            <form
+                            class="row g-3 needs-validation"
+                            [formGroup]="login"
+                            (ngSubmit)="logIn()"
+                            id="userform"
+                            novalidate
+                            >
+                              <div class="modal-body"> 
+                                <div class="row container mt-4 d-flex justify-content-center">
+                                  <div class="col-10 mb-3">
+                                    <label for="inputEmailAddress" class="form-label">Correo Electronico</label>
+                                    <input formControlName="email" type="text" class="form-control" id="inputEmailAddress" placeholder="Ingresar Usuario">
+                                  </div>
+                                  <div class="col-10">
+                                    <label for="inputChoosePassword" class="form-label">Contraseña</label>
+                                    <div class="input-group" id="show_hide_password">
+                                      <input
+                                        formControlName="password"
+                                        [type]="viewPassword ? 'text' : 'password'"
+                                        class="form-control border-end-0"
+                                        id="inputChoosePassword"
+                                        placeholder="Ingresar Contraseña"
+                                      >
+                                      <a (click)="changeTypePassword()" class="input-group-text bg-transparent">
+                                        <i class='bx bx-hide' *ngIf="!viewPassword"></i>
+                                        <i class='lni lni-eye' *ngIf="viewPassword"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-10 mt-3">
+                                    <div class="d-grid">
+                                      <button
+                                        type="submit"
+                                        class="btn btnsubmit"
+                                        [disabled]="login.invalid || isLoading"
+                                      >
+                                        <i class="bx bxs-lock-open" *ngIf="!isLoading"></i>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+                                        Iniciar Sesión
+                                      </button>
+                                    </div>
+                                  </div>  
+                                </div>
+                                 
+                              </div>
+                        
+                            </form>
+                          </div>
+                          <div class="tab-pane fade" id="registrarse" role="tabpanel" >
+                            <form
+                            class="row g-3 needs-validation"
+                            [formGroup]="form"
+                            (ngSubmit)="registerUser(form.value)"
+                            id="userform"
+                            novalidate
+                            >
+                              <div class="modal-body">   
+                        
+                                <div class="row container mt-4 d-flex justify-content-center">
+                                  <div class="col-md-5 form-group">
+                                    <label for="email" class="form-label">Correo Electrónico</label>
+                                    <input
+                                      type="text"
+                                      class="form-control form-control-sm"
+                                      id="email" formControlName="email"
+                                      placeholder="Ejemplo@gmail.com"
+                                      [ngClass]="{ 'is-invalid': (form.controls.email.touched || form.controls.email.dirty) && form.controls.email.errors }"
+                                    >
+                                  </div>
+                                    <div class="col-md-5 form-group">
+                                      <label for="password" class="form-label">Contraseña</label>
+                                      <input
+                                        type="password"
+                                        class="form-control form-control-sm"
+                                        id="password" formControlName="password"
+                                        placeholder="Contraseña"
+                                      >
+                                    </div>
+                                </div>
+                                <div class="row container justify-content-center">
+                                    <div class="col-md-5 form-group">
+                                      <label for="nombres" class="form-label">Nombres</label>
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm" id="nombres"
+                                        formControlName="nombres" placeholder="Nombres"
+                                        [ngClass]="{ 'is-invalid': form.controls.nombres.touched && form.controls.nombres.errors }"
+                                      >
+                                      <div *ngIf="form.controls.nombres.errors" class="invalid-feedback">
+                                        <div *ngIf="form.controls.nombres.errors.required">Nombre es requerido</div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-5 form-group">
+                                      <label for="apellidos" class="form-label">Apellidos</label>
+                                      <input type="text" class="form-control form-control-sm" id="apellidos" formControlName="apellidos" placeholder="Apellidos"
+                                      [ngClass]="{ 'is-invalid': form.controls.apellidos.touched && form.controls.apellidos.errors }"
+                                      >
+                                      <div *ngIf="form.controls.apellidos.errors" class="invalid-feedback">
+                                        <div *ngIf="form.controls.apellidos.errors.required">Apellido es requerido</div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row container justify-content-center">
+
+                                  <div class="col-md-10 form-group">
+                                    <label for="razon_social" class="form-label">Razon Social</label>
+                                    <input type="text" class="form-control form-control-sm" id="razon_social" formControlName="razon_social" placeholder="Direccion"
+                                    [ngClass]="{ 'is-invalid': form.controls.razon_social.touched && form.controls.razon_social.errors }"
+                                    >
+                                    <div *ngIf="form.controls.razon_social.errors" class="invalid-feedback">
+                                      <div *ngIf="form.controls.razon_social.errors.required">Direccion es requerido</div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col-md-10 form-group">
+                                    <label for="direccion" class="form-label">Direccion</label>
+                                    <input type="text" class="form-control form-control-sm" id="direccion" formControlName="direccion" placeholder="Direccion"
+                                    [ngClass]="{ 'is-invalid': form.controls.direccion.touched && form.controls.direccion.errors }"
+                                    >
+                                    <div *ngIf="form.controls.direccion.errors" class="invalid-feedback">
+                                      <div *ngIf="form.controls.direccion.errors.required">Direccion es requerido</div>
+                                    </div>
+                                  </div>
+                              </div>
+                                <div class="row container justify-content-center">
+                                    <div class="col-md-5 form-group">
+                                      <label for="validationCustom03" class="form-label">Celular</label>
+                                      <input type="text" class="form-control form-control-sm" id="validationCustom03" formControlName="celular" placeholder="Celular"
+                                      [ngClass]="{ 'is-invalid': form.controls.celular.touched && form.controls.celular.errors }"
+                                      >
+                                      <div *ngIf="form.controls.celular.errors" class="invalid-feedback">
+                                        <div *ngIf="form.controls.celular.errors.required">Celular es requerido</div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-5 form-group">
+                                      <label for="ci" class="form-label">Cédula de Identidad / NIT</label>
+                                      <input type="text" class="form-control form-control-sm" id="ci" formControlName="ci" placeholder="C.I.">
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-1 row">
+                                    <div class="col-md-4 d-flex justify-content-end">               
+                                          
+                                    </div>
+                                    <div class="col-md-8 row">
+                                        <div class="col-md-6 d-flex justify-content-end">
+                                            <button
+                                            type="button"
+                                            class="btn btndanger mt-3"
+                                            data-bs-dismiss="modal"
+                                            (click)="activeModal.dismiss('Cross click')"
+                                            >Cancelar</button>
+                                        </div> 
+                                        <div class="col-md-6">
+                                            <button
+                                            type="submit"
+                                            class="btn btnsubmit mt-3"
+                                            [disabled]="form.invalid || isLoading"
+                                          >
+                                            <i class="lni lni-save" *ngIf="!isLoading"></i>
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+                                            Registrar
+                                          </button>
+                                          </div> 
+                                    </div>
+                                </div>
+                        
+                              </div>
+                        
+                            </form>
+                          </div>
+                      </div>
+                  </div>     
+              </div>
+          </div>
+      </div>    
+  </div>  
+</div>  
